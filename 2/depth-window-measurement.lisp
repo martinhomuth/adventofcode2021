@@ -44,14 +44,10 @@
 	0)))
 
 (defun count-recursive (cons-list acc)
-  (format t "~D ~D ~D vs ~D ~D ~D~%" (car cons-list) (cadr cons-list) (caddr cons-list)
-	  (cadr cons-list) (caddr cons-list) (cadddr cons-list))
   (if (>= (list-length cons-list) 3)
       (progn
-	(if (> (nth-window cons-list 1) (nth-window cons-list 2))
-	    (progn
-	      (format t "~D > ~D~%" (nth-window cons-list 1) (nth-window cons-list 2))
-	      (setf acc (1+ acc))))
+	(if (> (nth-window cons-list 2) (nth-window cons-list 1))
+	      (setf acc (1+ acc)))
 	(count-recursive (cdr cons-list) acc))
       acc))
 
